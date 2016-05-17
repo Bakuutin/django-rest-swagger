@@ -1283,4 +1283,5 @@ class YAMLDocstringParser(object):
         return self.object.get('summary', None)
 
     def get_notes(self):
-        return self.object.get('notes', None)
+        notes = self.object.get('notes', None)
+        return do_markdown(notes) if notes else None
