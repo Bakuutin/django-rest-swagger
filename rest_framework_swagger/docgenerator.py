@@ -90,11 +90,14 @@ class DocumentationGenerator(object):
             response_type = self._get_method_response_type(
                 doc_parser, serializer, introspector, method_introspector)
 
+            doc_summary = doc_parser.get_summary() if hasattr(doc_parser, 'get_summary') else None
+            doc_notes = doc_parser.get_notes() if hasattr(doc_parser, 'get_notes') else None
+
             operation = {
                 'method': method_introspector.get_http_method(),
-                'summary': method_introspector.get_summary(),
+                'summary': doc_summary or method_introspector.get_summary(),
                 'nickname': method_introspector.get_nickname(),
-                'notes': method_introspector.get_notes(),
+                'notes': doc_notes or method_introspector.get_notes(),
                 'type': response_type,
             }
 

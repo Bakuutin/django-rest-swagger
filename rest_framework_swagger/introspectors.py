@@ -1278,3 +1278,9 @@ class YAMLDocstringParser(object):
             strategy = default
 
         return strategy
+
+    def get_summary(self):
+        return self.object.get('summary', None)
+
+    def get_notes(self):
+        return self.object.get('notes', None)
